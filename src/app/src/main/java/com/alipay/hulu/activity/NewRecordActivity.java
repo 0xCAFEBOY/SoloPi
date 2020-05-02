@@ -32,7 +32,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alipay.hulu.R;
@@ -45,7 +44,6 @@ import com.alipay.hulu.common.injector.InjectorService;
 import com.alipay.hulu.common.injector.param.SubscribeParamEnum;
 import com.alipay.hulu.common.injector.param.Subscriber;
 import com.alipay.hulu.common.injector.provider.Param;
-import com.alipay.hulu.common.service.SPService;
 import com.alipay.hulu.common.tools.BackgroundExecutor;
 import com.alipay.hulu.common.utils.ContextUtil;
 import com.alipay.hulu.common.utils.GlideUtil;
@@ -360,7 +358,7 @@ public class NewRecordActivity extends BaseActivity {
         startRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (StringUtil.isEmpty(mCaseName.getText().toString().trim())) {
+                if (StringUtil.isEmpty(mCaseName.getText().toString().trim())) { // 用例名称的非空性检查
                     toastShort(R.string.record__case_name_empty);
                     return;
                 }
@@ -389,7 +387,7 @@ public class NewRecordActivity extends BaseActivity {
                 caseInfo.setRecordMode("local");
                 caseInfo.setAdvanceSettings(JSON.toJSONString(setting));
 
-                // 检查权限
+                // 检查 adb 和辅助服务权限
                 PermissionUtil.requestPermissions(Arrays.asList("adb", Settings.ACTION_ACCESSIBILITY_SETTINGS), NewRecordActivity.this, new PermissionUtil.OnPermissionCallback() {
                     @Override
                     public void onPermissionResult(boolean result, String reason) {

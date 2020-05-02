@@ -357,6 +357,9 @@ public class IndexActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 标识每个功能的入口
+     */
     public static class Entry {
 
         private int iconId;

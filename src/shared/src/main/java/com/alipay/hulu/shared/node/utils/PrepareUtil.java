@@ -46,6 +46,7 @@ public class PrepareUtil {
     public static boolean doPrepareWork(String targetApp, PrepareStatus status) {
         if (!initialized) {
             initialized = true;
+            // 进行初始化准备工作
             initPrepareWorkers();
         }
 

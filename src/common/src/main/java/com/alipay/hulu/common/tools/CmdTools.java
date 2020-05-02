@@ -793,7 +793,7 @@ public class CmdTools {
 
     private static volatile long LAST_RUNNING_TIME = 0;
     /**
-     * 生成Adb连接，由所在文件生成，或创建并保存到相应文件
+     * 建立 Adb 连接，由所在文件生成，或创建并保存到相应文件
      */
     public static synchronized boolean generateConnection() {
 
@@ -1276,7 +1276,7 @@ public class CmdTools {
      */
     private static void startAdbStatusCheck() {
         if (scheduledExecutorService == null) {
-            scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+            scheduledExecutorService = Executors.newSingleThreadScheduledExecutor(); // 开启线程池，周期性地检查 SoloPi 与本机 adb 的连接状态
         }
 
         scheduledExecutorService.schedule(new Runnable() {
@@ -1291,7 +1291,7 @@ public class CmdTools {
                 LAST_RUNNING_TIME = currentTime;
                 String result = null;
                 try {
-                    result = execAdbCmd("echo '1'", 5000);
+                    result = execAdbCmd("echo '1'", 5000); // 通过执行 echo 命令返回值来判断 adb 连接状态
                 } catch (Exception e) {
                     LogUtil.e(TAG, "Check adb status throw :" + e.getMessage(), e);
                 }
